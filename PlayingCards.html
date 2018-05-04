@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7 Cards</title>
+    <style>
+    button, label {
+        display: block;
+    }
+    label#player1 {
+        font-size: 40px;
+    }
+    </style>
+</head>
+<body>
+    <button>Distribute</button><br/>
+    <label for="">Player 1 :</label>
+    <label id="player1"></label>
+    <label for="">Player 2 :</label>
+    <label for="">Player 3 :</label>
+    <label for="">Player 4 :</label>
+
+    <script>
+    //Player Cards
+    var player1 = [];
+    var player2 = [];
+    var player3 = [];
+    var player4 = [];
+    //Random Card Pushing
+    var cards = [];
+    while(cards.length <= 51){
+        var rand = Math.floor(Math.random()*52)+1;
+        if(!(cards.includes(rand))){
+            cards.push(rand);
+        }
+    }
+    console.log(cards);
+    //Card Distribution
+    while(cards.length != 0){
+        player1.push(cards.pop());
+        player2.push(cards.pop());
+        player3.push(cards.pop());
+        player4.push(cards.pop());
+    }
+    //Display Distribution
+    console.log(cards);
+    player1.sort();
+    console.log(player1);
+    console.log(player2);
+    console.log(player3);
+    console.log(player4);
+    //Rendering Data to HTML
+    for(card in player1){
+        if(player1[card] >= 1 && player1[card] <= 13){
+            document.getElementById('player1').innerHTML += "&spades;" + player1[card] + ", ";
+        }
+        else if(player1[card] >= 14 && player1[card] <= 26){
+            document.getElementById('player1').innerHTML += "&hearts;" + player1[card] + ", ";
+        }
+        else if(player1[card] >= 27 && player1[card] <= 39){
+            document.getElementById('player1').innerHTML += "&diams;" + player1[card] + ", ";
+        }
+        else if(player1[card] >= 40 && player1[card] <= 52){
+            document.getElementById('player1').innerHTML += "&clubs;" + player1[card] + ", ";
+        }
+    }
+    </script>
+</body>
+</html>
