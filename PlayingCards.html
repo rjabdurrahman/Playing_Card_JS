@@ -46,7 +46,9 @@
     }
     //Display Distribution
     console.log(cards);
-    player1.sort();
+    player1.sort(function(a, b){
+        return a - b;
+    });
     console.log(player1);
     console.log(player2);
     console.log(player3);
