@@ -66,20 +66,33 @@
     console.log(player2);
     console.log(player3);
     console.log(player4);
+    //Card Decoding
+    function decodeCard(cardno){
+        if(cardno > 10 && cardno == 11)
+            return "J";
+        else if(cardno > 10 && cardno == 12)
+            return "Q";
+        else if(cardno > 10 && cardno == 13)
+            return "K";
+        else if(cardno > 10 && cardno == 14)
+            return "A";
+        else
+            return cardno;
+    }
     //Rendering Data to HTML with Decoding
     function rendCard(player, playerid){
         for(card in player){
-            if(player[card] >= 1 && player[card] <= 13){
-                document.getElementById(playerid).innerHTML += "&spades;" + player[card] + ", ";
+            if(player[card] >= 1 && player[card] <= 14){
+                document.getElementById(playerid).innerHTML += "&spades;" + decodeCard(player[card]) + ", ";
             }
-            else if(player[card] >= 14 && player[card] <= 26){
-                document.getElementById(playerid).innerHTML += "&hearts;" + (player[card] - 13) + ", ";
+            else if(player[card] >= 15 && player[card] <= 27){
+                document.getElementById(playerid).innerHTML += "&hearts;" + decodeCard((player[card] - 13)) + ", ";
             }
-            else if(player[card] >= 27 && player[card] <= 39){
-                document.getElementById(playerid).innerHTML += "&diams;" + (player[card] - 26) + ", ";
+            else if(player[card] >= 28 && player[card] <= 40){
+                document.getElementById(playerid).innerHTML += "&diams;" + decodeCard((player[card] - 26)) + ", ";
             }
-            else if(player[card] >= 40 && player[card] <= 52){
-                document.getElementById(playerid).innerHTML += "&clubs;" + (player[card] - 39) + ", ";
+            else if(player[card] >= 41 && player[card] <= 53){
+                document.getElementById(playerid).innerHTML += "&clubs;" + decodeCard((player[card] - 39)) + ", ";
             }
         }
         //Rend End
