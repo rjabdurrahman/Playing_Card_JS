@@ -96,13 +96,13 @@
                 document.getElementById(playerid).innerHTML += cssCard("spades", decodeCard(player[card]));
             }
             else if(player[card] >= 15 && player[card] <= 27){
-                document.getElementById(playerid).innerHTML += cssCard("hearts", decodeCard((player[card] - 13)));
+                document.getElementById(playerid).innerHTML += cssCard("diams", decodeCard((player[card] - 13)));
             }
             else if(player[card] >= 28 && player[card] <= 40){
-                document.getElementById(playerid).innerHTML += cssCard("diams", decodeCard((player[card] - 26)));
+                document.getElementById(playerid).innerHTML += cssCard("clubs", decodeCard((player[card] - 26)));
             }
             else if(player[card] >= 41 && player[card] <= 53){
-                document.getElementById(playerid).innerHTML += cssCard("clubs", decodeCard((player[card] - 39)));
+                document.getElementById(playerid).innerHTML += cssCard("hearts", decodeCard((player[card] - 39)));
             }
         }
         //Rend End
