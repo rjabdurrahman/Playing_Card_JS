@@ -83,7 +83,7 @@
     //CSS Card Render
     function cssCard(cardColor, rank){
         return '<li>' +
-                '<a class="card rank-7 ' + cardColor + '" href="#">' +
+                '<a class="card rank-' + (isNaN(rank) ? rank.toLowerCase() : rank) + ' ' + cardColor + '" href="#">' +
                     '<span class="rank">' + rank + '</span>' +
                     '<span class="suit">&' + cardColor + ';</span>' +
                 '</a>' +
