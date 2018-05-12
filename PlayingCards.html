@@ -9,7 +9,7 @@
     button, label {
         display: block;
     }
-    label#player1 {
+    label#player1, label#player2, label#player3, label#player4 {
         font-size: 40px;
     }
     </style>
@@ -19,8 +19,11 @@
     <label for="">Player 1 :</label>
     <label id="player1"></label>
     <label for="">Player 2 :</label>
+    <label id="player2"></label>
     <label for="">Player 3 :</label>
+    <label id="player3"></label>
     <label for="">Player 4 :</label>
+    <label id="player4"></label>
 
     <script>
     //Player Cards
@@ -31,7 +34,7 @@
     //Random Card Pushing
     var cards = [];
     while(cards.length <= 51){
-        var rand = Math.floor(Math.random()*52)+1;
+        var rand = Math.floor(Math.random()*52)+2;
         if(!(cards.includes(rand))){
             cards.push(rand);
         }
@@ -44,30 +47,48 @@
         player3.push(cards.pop());
         player4.push(cards.pop());
     }
-    //Display Distribution
+    //Sort Players Card
     console.log(cards);
     player1.sort(function(a, b){
         return a - b;
     });
+    player2.sort(function(a, b){
+        return a - b;
+    });
+    player3.sort(function(a, b){
+        return a - b;
+    });
+    player4.sort(function(a, b){
+        return a - b;
+    });
+    //Display Players Card
     console.log(player1);
     console.log(player2);
     console.log(player3);
     console.log(player4);
-    //Rendering Data to HTML
-    for(card in player1){
-        if(player1[card] >= 1 && player1[card] <= 13){
-            document.getElementById('player1').innerHTML += "&spades;" + player1[card] + ", ";
+    //Rendering Data to HTML with Decoding
+    function rendCard(player, playerid){
+        for(card in player){
+            if(player[card] >= 1 && player[card] <= 13){
+                document.getElementById(playerid).innerHTML += "&spades;" + player[card] + ", ";
+            }
+            else if(player[card] >= 14 && player[card] <= 26){
+                document.getElementById(playerid).innerHTML += "&hearts;" + (player[card] - 13) + ", ";
+            }
+            else if(player[card] >= 27 && player[card] <= 39){
+                document.getElementById(playerid).innerHTML += "&diams;" + (player[card] - 26) + ", ";
+            }
+            else if(player[card] >= 40 && player[card] <= 52){
+                document.getElementById(playerid).innerHTML += "&clubs;" + (player[card] - 39) + ", ";
+            }
         }
-        else if(player1[card] >= 14 && player1[card] <= 26){
-            document.getElementById('player1').innerHTML += "&hearts;" + player1[card] + ", ";
-        }
-        else if(player1[card] >= 27 && player1[card] <= 39){
-            document.getElementById('player1').innerHTML += "&diams;" + player1[card] + ", ";
-        }
-        else if(player1[card] >= 40 && player1[card] <= 52){
-            document.getElementById('player1').innerHTML += "&clubs;" + player1[card] + ", ";
-        }
+        //Rend End
     }
+    //Players Card Rendering
+    rendCard(player1, "player1");
+    rendCard(player2, "player2");
+    rendCard(player3, "player3");
+    rendCard(player4, "player4");
     </script>
 </body>
 </html>
