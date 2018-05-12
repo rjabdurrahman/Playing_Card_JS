@@ -9,21 +9,22 @@
     button, label {
         display: block;
     }
-    label#player1, label#player2, label#player3, label#player4 {
+    ul#player1, ul#player2, ul#player3, ul#player4 {
         font-size: 40px;
     }
     </style>
+    <link rel="stylesheet" href="cards.css">
 </head>
 <body>
     <button>Distribute</button><br/>
     <label for="">Player 1 :</label>
-    <label id="player1"></label>
+    <div class="playingCards"><ul class="hand" id="player1"></ul></div>
     <label for="">Player 2 :</label>
-    <label id="player2"></label>
+    <div class="playingCards"><ul class="hand" id="player2"></ul></div>
     <label for="">Player 3 :</label>
-    <label id="player3"></label>
+    <div class="playingCards"><ul class="hand" id="player3"></ul></div>
     <label for="">Player 4 :</label>
-    <label id="player4"></label>
+    <div class="playingCards"><ul class="hand" id="player4"></ul></div>
 
     <script>
     //Player Cards
@@ -79,20 +80,29 @@
         else
             return cardno;
     }
+    //CSS Card Render
+    function cssCard(cardColor, rank){
+        return '<li>' +
+                '<a class="card rank-7 ' + cardColor + '" href="#">' +
+                    '<span class="rank">' + rank + '</span>' +
+                    '<span class="suit">&' + cardColor + ';</span>' +
+                '</a>' +
+            '</li>';
+    }
     //Rendering Data to HTML with Decoding
     function rendCard(player, playerid){
         for(card in player){
             if(player[card] >= 1 && player[card] <= 14){
-                document.getElementById(playerid).innerHTML += "&spades;" + decodeCard(player[card]) + ", ";
+                document.getElementById(playerid).innerHTML += cssCard("spades", decodeCard(player[card]));
             }
             else if(player[card] >= 15 && player[card] <= 27){
-                document.getElementById(playerid).innerHTML += "&hearts;" + decodeCard((player[card] - 13)) + ", ";
+                document.getElementById(playerid).innerHTML += cssCard("hearts", decodeCard((player[card] - 13)));
             }
             else if(player[card] >= 28 && player[card] <= 40){
-                document.getElementById(playerid).innerHTML += "&diams;" + decodeCard((player[card] - 26)) + ", ";
+                document.getElementById(playerid).innerHTML += cssCard("diams", decodeCard((player[card] - 26)));
             }
             else if(player[card] >= 41 && player[card] <= 53){
-                document.getElementById(playerid).innerHTML += "&clubs;" + decodeCard((player[card] - 39)) + ", ";
+                document.getElementById(playerid).innerHTML += cssCard("clubs", decodeCard((player[card] - 39)));
             }
         }
         //Rend End
